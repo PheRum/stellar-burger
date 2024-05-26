@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent, useEffect } from "react";
 import { RegisterUI } from "@ui-pages";
 import { Preloader } from "@ui";
 import {
@@ -9,11 +9,15 @@ import {
     selectErrorText
 } from "../../slices/stellarBurgerSlice";
 import { useDispatch, useSelector } from "../../services/store";
+import { useForm } from "../../hooks/useForm";
+import { TRegisterData } from "@api";
 
 export const Register: FC = () => {
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { values, handleChange } = useForm<TRegisterData>({
+        name: "",
+        email: "",
+        password: ""
+    });
     const dispatch = useDispatch();
     const isLoading = useSelector(selectLoading);
     const error = useSelector(selectErrorText);
@@ -24,13 +28,7 @@ export const Register: FC = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch(
-            fetchRegisterUser({
-                name: userName,
-                password: password,
-                email: email
-            })
-        ).then(() => dispatch(getUserThunk()));
+        dispatch(fetchRegisterUser(values)).then(() => dispatch(getUserThunk()));
     };
 
     if (isLoading) {
@@ -39,12 +37,12 @@ export const Register: FC = () => {
     return (
         <RegisterUI
             errorText={error}
-            email={email}
-            userName={userName}
-            password={password}
-            setEmail={setEmail}
-            setPassword={setPassword}
-            setUserName={setUserName}
+            email={values.email}
+            userName={values.name}
+            password={values.password}
+            setEmail={handleChange}
+            setPassword={handleChange}
+            setUserName={handleChange}
             handleSubmit={handleSubmit}
         />
     );

@@ -1,17 +1,19 @@
-import React, { FC, SyntheticEvent, useEffect, useState } from "react";
+import React, { FC, SyntheticEvent, useEffect } from "react";
 import { LoginUI } from "@ui-pages";
 import { useDispatch } from "../../services/store";
 import { useSelector } from "react-redux";
 import { fetchLoginUser, removeErrorText, selectErrorText, selectLoading } from "../../slices/stellarBurgerSlice";
 import { Preloader } from "@ui";
+import { useForm } from "../../hooks/useForm";
 
 export const Login: FC = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
     const error = useSelector(selectErrorText);
     const isLoading = useSelector(selectLoading);
+    const { values, handleChange } = useForm({
+        email: "",
+        password: ""
+    });
 
     useEffect(() => {
         dispatch(removeErrorText());
@@ -20,7 +22,7 @@ export const Login: FC = () => {
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         dispatch(removeErrorText());
-        dispatch(fetchLoginUser({ email, password }));
+        dispatch(fetchLoginUser(values));
     };
 
     if (isLoading) {
@@ -30,10 +32,10 @@ export const Login: FC = () => {
     return (
         <LoginUI
             errorText={error}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
+            email={values.email}
+            setEmail={handleChange}
+            password={values.password}
+            setPassword={handleChange}
             handleSubmit={handleSubmit}
         />
     );
