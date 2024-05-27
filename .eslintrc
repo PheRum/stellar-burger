@@ -20,7 +20,7 @@
         ],
         "react/react-in-jsx-scope": "off",
         "comma-dangle": ["warn", {
-            "arrays": "never",
+            "arrays": "only-multiline",
             "objects": "only-multiline",
             "imports": "only-multiline",
             "exports": "only-multiline",
