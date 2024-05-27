@@ -10,7 +10,7 @@
         }
     },
     "rules": {
-        "semi": [2, "always"],
+        "semi": [1, "always"],
         "quotes": [2, "double", {"avoidEscape": true}],
         "prettier/prettier": [
             "warn",
@@ -19,7 +19,13 @@
             }
         ],
         "react/react-in-jsx-scope": "off",
-        "comma-dangle": "off",
+        "comma-dangle": ["warn", {
+            "arrays": "never",
+            "objects": "only-multiline",
+            "imports": "only-multiline",
+            "exports": "only-multiline",
+            "functions": "only-multiline"
+        }],
         "use-isnan": ["error", {"enforceForSwitchCase": true}],
         "react/void-dom-elements-no-children": "warn",
         "react/no-unsafe": "warn",
