@@ -1,9 +1,10 @@
 import React, { FC, useMemo } from "react";
 import { OrderInfoUI, Preloader } from "@ui";
 import { TIngredient } from "@utils-types";
-import { selectIngredients, selectOrders } from "../../slices/stellarBurgerSlice";
 import { useSelector } from "../../services/store";
 import { redirect, useParams } from "react-router-dom";
+import { selectOrders } from "../../slices/feedSlice";
+import { selectIngredients } from "../../slices/contructorSlice";
 
 export const OrderInfo: FC = () => {
     const params = useParams<{ number: string }>();
@@ -34,7 +35,7 @@ export const OrderInfo: FC = () => {
                 if (ingredient) {
                     acc[item] = {
                         ...ingredient,
-                        count: 1
+                        count: 1,
                     };
                 }
             } else {
@@ -50,7 +51,7 @@ export const OrderInfo: FC = () => {
             ...orderData,
             ingredientsInfo,
             date,
-            total
+            total,
         };
     }, [orderData, ingredients]);
 

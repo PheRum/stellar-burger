@@ -4,8 +4,8 @@ export function getCookie(name: string): string | undefined {
             "(?:^|; )" +
                 // eslint-disable-next-line no-useless-escape
                 name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-                "=([^;]*)"
-        )
+                "=([^;]*)",
+        ),
     );
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
@@ -14,14 +14,10 @@ export function getCookie(name: string): string | undefined {
  там не задается path и возможна ситуация, когда на разных страницах в cookies
  будут разные токены, поэтому в path нужно задавать корень сайта path: '/' */
 
-export function setCookie(
-    name: string,
-    value: string,
-    props: { [key: string]: string | number | Date | boolean } = {}
-) {
+export function setCookie(name: string, value: string, props: { [key: string]: string | number | Date | boolean } = {}) {
     props = {
         path: "/",
-        ...props
+        ...props,
     };
 
     let exp = props.expires;

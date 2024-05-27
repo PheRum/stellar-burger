@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { selectIsAuthenticated, selectIsInit } from "../../slices/stellarBurgerSlice";
+import { selectIsAuthenticated, selectIsInit } from "../../slices/userSlice";
 import { Preloader } from "@ui";
 import { useSelector } from "../../services/store";
 import React from "react";

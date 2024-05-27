@@ -4,31 +4,13 @@ import styles from "./app.module.css";
 
 import { AppHeader, Modal, OrderInfo, IngredientDetails } from "@components";
 import { Route, Routes, useLocation } from "react-router-dom";
-import {
-    ConstructorPage,
-    Feed,
-    ForgotPassword,
-    Login,
-    NotFound404,
-    Profile,
-    ProfileOrders,
-    Register,
-    ResetPassword
-} from "@pages";
+import { ConstructorPage, Feed, ForgotPassword, Login, NotFound404, Profile, ProfileOrders, Register, ResetPassword } from "@pages";
 import { ProtectedRoute } from "../protected-route";
-import {
-    closeModal,
-    fetchFeed,
-    fetchIngredients,
-    getUserThunk,
-    init,
-    selectIngredients,
-    selectIsAuthenticated,
-    selectIsModalOpened,
-    selectOrders
-} from "../../slices/stellarBurgerSlice";
+import { closeModal, fetchIngredients, selectIngredients, selectIsModalOpened } from "../../slices/contructorSlice";
 import { useDispatch, useSelector } from "../../services/store";
 import { getCookie } from "../../utils/cookie";
+import { getUserThunk, init, selectIsAuthenticated } from "../../slices/userSlice";
+import { fetchFeed, selectOrders } from "../../slices/feedSlice";
 
 const token = getCookie("accessToken");
 
@@ -47,7 +29,6 @@ const App = () => {
         } else {
             dispatch(init());
         }
-
         if (!ingredients.length) {
             dispatch(fetchIngredients());
         }

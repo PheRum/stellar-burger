@@ -1,9 +1,10 @@
 import React, { FC, useEffect } from "react";
-import { fetchFeed, fetchIngredients, removeOrders, selectOrders } from "../../slices/stellarBurgerSlice";
+import { fetchFeed, removeOrders, selectOrders } from "../../slices/feedSlice";
 import { FeedUI } from "@ui-pages";
 import { Preloader } from "@ui";
 import { TOrder } from "@utils-types";
 import { useDispatch, useSelector } from "../../services/store";
+import { fetchIngredients } from "../../slices/contructorSlice";
 
 export const Feed: FC = () => {
     const orders: TOrder[] = useSelector(selectOrders);

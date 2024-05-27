@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 
 import { TTabMode } from "@utils-types";
 import { useSelector } from "../../services/store";
-import { selectIngredients } from "../../slices/stellarBurgerSlice";
+import { selectIngredients } from "../../slices/contructorSlice";
 import { BurgerIngredientsUI } from "@ui";
 
 export const BurgerIngredients: FC = () => {
@@ -18,15 +18,15 @@ export const BurgerIngredients: FC = () => {
     const titleSaucesRef = useRef<HTMLHeadingElement>(null);
 
     const [bunsRef, inViewBuns] = useInView({
-        threshold: 0
+        threshold: 0,
     });
 
     const [mainsRef, inViewFilling] = useInView({
-        threshold: 0
+        threshold: 0,
     });
 
     const [saucesRef, inViewSauces] = useInView({
-        threshold: 0
+        threshold: 0,
     });
 
     useEffect(() => {

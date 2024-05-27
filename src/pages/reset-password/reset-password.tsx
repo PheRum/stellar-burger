@@ -11,7 +11,7 @@ export const ResetPassword: FC = () => {
 
     const { values, handleChange } = useForm({
         token: "",
-        password: ""
+        password: "",
     });
 
     const handleSubmit = (e: SyntheticEvent) => {

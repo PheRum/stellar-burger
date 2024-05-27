@@ -1,6 +1,6 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "../../services/store";
-import { fetchUpdateUser, selectLoading, selectUser } from "../../slices/stellarBurgerSlice";
+import { fetchUpdateUser, selectLoading, selectUser } from "../../slices/userSlice";
 import { Preloader } from "@ui";
 import { ProfileUI } from "@ui-pages";
 
@@ -12,14 +12,14 @@ export const Profile: FC = () => {
     const [formValue, setFormValue] = useState({
         name: user.name,
         email: user.email,
-        password: ""
+        password: "",
     });
 
     useEffect(() => {
         setFormValue((prevState) => ({
             ...prevState,
             name: user?.name || "",
-            email: user?.email || ""
+            email: user?.email || "",
         }));
     }, [user]);
 
@@ -35,14 +35,14 @@ export const Profile: FC = () => {
         setFormValue({
             name: user.name,
             email: user.email,
-            password: ""
+            password: "",
         });
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormValue((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         }));
     };
 

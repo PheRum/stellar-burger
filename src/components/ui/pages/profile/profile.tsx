@@ -13,7 +13,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
     updateUserError,
     handleSubmit,
     handleCancel,
-    handleInputChange
+    handleInputChange,
 }) => (
     <main className={`${commonStyles.container}`}>
         <div className={`mt-30 mr-15 ${styles.menu}`}>
@@ -76,9 +76,7 @@ export const ProfileUI: FC<ProfileUIProps> = ({
                         </Button>
                     </div>
                 )}
-                {updateUserError && (
-                    <p className={`${commonStyles.error} pt-5 text text_type_main-default`}>{updateUserError}</p>
-                )}
+                {updateUserError && <p className={`${commonStyles.error} pt-5 text text_type_main-default`}>{updateUserError}</p>}
             </>
         </form>
     </main>

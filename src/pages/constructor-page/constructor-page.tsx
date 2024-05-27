@@ -1,4 +1,4 @@
-import { selectLoading } from "../../slices/stellarBurgerSlice";
+import { selectLoading } from "../../slices/contructorSlice";
 import { useSelector } from "../../services/store";
 
 import styles from "./constructor-page.module.css";

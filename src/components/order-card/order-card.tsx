@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { OrderCardProps } from "./type";
 import { TIngredient } from "@utils-types";
 import { useSelector } from "../../services/store";
-import { selectIngredients } from "../../slices/stellarBurgerSlice";
+import { selectIngredients } from "../../slices/contructorSlice";
 import { OrderCardUI } from "@ui";
 
 const maxIngredients = 6;
@@ -36,13 +36,11 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
             ingredientsToShow,
             remains,
             total,
-            date
+            date,
         };
     }, [order, ingredients]);
 
     if (!orderInfo) return null;
 
-    return (
-        <OrderCardUI orderInfo={orderInfo} maxIngredients={maxIngredients} locationState={{ background: location }} />
-    );
+    return <OrderCardUI orderInfo={orderInfo} maxIngredients={maxIngredients} locationState={{ background: location }} />;
 });

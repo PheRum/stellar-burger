@@ -18,10 +18,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
                     </>
                     <>
                         <ListIcon type={"primary"} />
-                        <Link
-                            to="/feed"
-                            className={location.pathname.includes("feed") ? styles.link_active : styles.link}
-                        >
+                        <Link to="/feed" className={location.pathname.includes("feed") ? styles.link_active : styles.link}>
                             <p className="text text_type_main-default ml-2">Лента заказов</p>
                         </Link>
                     </>
@@ -33,10 +30,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
                 </div>
                 <div className={styles.link_position_last}>
                     <ProfileIcon type={"primary"} />
-                    <Link
-                        to="/profile"
-                        className={location.pathname.includes("profile") ? styles.link_active : styles.link}
-                    >
+                    <Link to="/profile" className={location.pathname.includes("profile") ? styles.link_active : styles.link}>
                         <p className="text text_type_main-default ml-2">{userName || "Личный кабинет"}</p>
                     </Link>
                 </div>

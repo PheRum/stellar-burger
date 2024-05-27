@@ -6,19 +6,7 @@ import { BurgerIngredientsUIProps } from "./type";
 import { IngredientsCategory } from "@components";
 
 export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
-    ({
-        currentTab,
-        buns,
-        mains,
-        sauces,
-        titleBunRef,
-        titleMainRef,
-        titleSaucesRef,
-        bunsRef,
-        mainsRef,
-        saucesRef,
-        onTabClick
-    }) => (
+    ({ currentTab, buns, mains, sauces, titleBunRef, titleMainRef, titleSaucesRef, bunsRef, mainsRef, saucesRef, onTabClick }) => (
         <>
             <section className={styles.burger_ingredients}>
                 <nav>
@@ -41,5 +29,5 @@ export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
                 </div>
             </section>
         </>
-    )
+    ),
 );

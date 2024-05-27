@@ -6,7 +6,7 @@ import styles from "./order-card.module.css";
 
 import { OrderCardUIProps } from "./type";
 import { OrderStatus } from "@components";
-import { openModal } from "../../../slices/stellarBurgerSlice";
+import { openModal } from "../../../slices/contructorSlice";
 import { useDispatch } from "../../../services/store";
 
 export const OrderCardUI: FC<OrderCardUIProps> = memo(({ orderInfo, maxIngredients, locationState }) => {
@@ -25,9 +25,7 @@ export const OrderCardUI: FC<OrderCardUIProps> = memo(({ orderInfo, maxIngredien
             onClick={onModalHandler}
         >
             <div className={styles.order_info}>
-                <span className={`text text_type_digits-default ${styles.number}`}>
-                    #{String(orderInfo.number).padStart(6, "0")}
-                </span>
+                <span className={`text text_type_digits-default ${styles.number}`}>#{String(orderInfo.number).padStart(6, "0")}</span>
                 <span className="text text_type_main-default text_color_inactive">
                     <FormattedDate date={orderInfo.date} />
                 </span>
@@ -43,7 +41,7 @@ export const OrderCardUI: FC<OrderCardUIProps> = memo(({ orderInfo, maxIngredien
                             <li className={styles.img_wrap} style={{ zIndex: zIndex, right: right }} key={index}>
                                 <img
                                     style={{
-                                        opacity: orderInfo.remains && maxIngredients === index + 1 ? "0.5" : "1"
+                                        opacity: orderInfo.remains && maxIngredients === index + 1 ? "0.5" : "1",
                                     }}
                                     className={styles.img}
                                     src={ingredient.image_mobile}
@@ -59,9 +57,7 @@ export const OrderCardUI: FC<OrderCardUIProps> = memo(({ orderInfo, maxIngredien
                     })}
                 </ul>
                 <div>
-                    <span className={`text text_type_digits-default pr-1 ${styles.order_total}`}>
-                        {orderInfo.total}
-                    </span>
+                    <span className={`text text_type_digits-default pr-1 ${styles.order_total}`}>{orderInfo.total}</span>
                     <CurrencyIcon type="primary" />
                 </div>
             </div>

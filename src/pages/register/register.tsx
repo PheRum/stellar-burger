@@ -1,13 +1,7 @@
 import { FC, SyntheticEvent, useEffect } from "react";
 import { RegisterUI } from "@ui-pages";
 import { Preloader } from "@ui";
-import {
-    fetchRegisterUser,
-    getUserThunk,
-    removeErrorText,
-    selectLoading,
-    selectErrorText
-} from "../../slices/stellarBurgerSlice";
+import { fetchRegisterUser, getUserThunk, removeErrorText, selectLoading, selectErrorText } from "../../slices/userSlice";
 import { useDispatch, useSelector } from "../../services/store";
 import { useForm } from "../../hooks/useForm";
 import { TRegisterData } from "@api";
@@ -16,7 +10,7 @@ export const Register: FC = () => {
     const { values, handleChange } = useForm<TRegisterData>({
         name: "",
         email: "",
-        password: ""
+        password: "",
     });
     const dispatch = useDispatch();
     const isLoading = useSelector(selectLoading);

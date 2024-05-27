@@ -2,7 +2,7 @@ import React, { FC, SyntheticEvent, useEffect } from "react";
 import { LoginUI } from "@ui-pages";
 import { useDispatch } from "../../services/store";
 import { useSelector } from "react-redux";
-import { fetchLoginUser, removeErrorText, selectErrorText, selectLoading } from "../../slices/stellarBurgerSlice";
+import { fetchLoginUser, removeErrorText, selectErrorText, selectLoading } from "../../slices/userSlice";
 import { Preloader } from "@ui";
 import { useForm } from "../../hooks/useForm";
 
@@ -12,7 +12,7 @@ export const Login: FC = () => {
     const isLoading = useSelector(selectLoading);
     const { values, handleChange } = useForm({
         email: "",
-        password: ""
+        password: "",
     });
 
     useEffect(() => {

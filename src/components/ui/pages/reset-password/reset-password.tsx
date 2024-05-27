@@ -4,26 +4,19 @@ import styles from "../common.module.css";
 import { Link } from "react-router-dom";
 import { ResetPasswordUIProps } from "./type";
 
-export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
-    errorText,
-    password,
-    setPassword,
-    handleSubmit,
-    token,
-    setToken
-}) => (
+export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({ errorText, password, setPassword, handleSubmit, token, setToken }) => (
     <main className={styles.container}>
         <div className={`pt-6 ${styles.wrapCenter}`}>
             <h3 className="pb-6 text text_type_main-medium">Восстановление пароля</h3>
             <form className={`pb-15 ${styles.form}`} name="login" onSubmit={handleSubmit}>
                 <div className="pb-6">
-                    <PasswordInput onChange={(e) => setPassword(e.target.value)} value={password} name="password" />
+                    <PasswordInput onChange={setPassword} value={password} name="password" />
                 </div>
                 <div className="pb-6">
                     <Input
                         type="text"
                         placeholder="Введите код из письма"
-                        onChange={(e) => setToken(e.target.value)}
+                        onChange={setToken}
                         value={token}
                         name="token"
                         error={false}
