@@ -5,6 +5,10 @@ on:
       branches:
          - master
          - review
+
+env:
+   BURGER_API_URL: "https://norma.nomoreparties.space/api"
+
 jobs:
    build:
       runs-on: ubuntu-latest
