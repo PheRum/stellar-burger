@@ -32,8 +32,6 @@ export const RegisterUI: FC<RegisterUIProps> = ({
                             error={false}
                             errorText=""
                             size="default"
-                            onPointerEnterCapture={undefined}
-                            onPointerLeaveCapture={undefined}
                         />
                     </div>
                     <div className="pb-6">
@@ -46,8 +44,6 @@ export const RegisterUI: FC<RegisterUIProps> = ({
                             error={false}
                             errorText=""
                             size={"default"}
-                            onPointerEnterCapture={undefined}
-                            onPointerLeaveCapture={undefined}
                         />
                     </div>
                     <div className="pb-6">
