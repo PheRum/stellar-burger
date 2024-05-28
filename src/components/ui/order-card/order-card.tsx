@@ -22,8 +22,7 @@ export const OrderCardUI: FC<OrderCardUIProps> = memo(({ orderInfo, maxIngredien
             relative="path"
             state={locationState}
             className={`p-6 mb-4 mr-2 ${styles.order}`}
-            onClick={onModalHandler}
-        >
+            onClick={onModalHandler}>
             <div className={styles.order_info}>
                 <span className={`text text_type_digits-default ${styles.number}`}>#{String(orderInfo.number).padStart(6, "0")}</span>
                 <span className="text text_type_main-default text_color_inactive">
