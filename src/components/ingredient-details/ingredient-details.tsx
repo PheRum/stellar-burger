@@ -1,10 +1,25 @@
-import { FC } from 'react';
+import React, { FC, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "../../services/store";
+import { selectIngredients } from "../../slices/contructorSlice";
+import { IngredientDetailsUI, Preloader } from "@ui";
 
-export const IngredientDetails: FC = () =>
-  // if (!ingredientData) {
-  //   return <Preloader />;
-  // }
+export const IngredientDetails: FC = () => {
+    const navigate = useNavigate();
+    const params = useParams<{ id: string }>();
 
-  // return <IngredientDetailsUI ingredientData={ingredientData} />;
+    useEffect(() => {
+        if (!params.id) {
+            navigate("/", { replace: true });
+        }
+    }, []);
 
-  null;
+    const ingredients = useSelector(selectIngredients);
+    const ingredientData = ingredients.find((item) => item._id === params.id);
+
+    if (!ingredientData) {
+        return <Preloader />;
+    }
+
+    return <IngredientDetailsUI ingredientData={ingredientData} />;
+};
