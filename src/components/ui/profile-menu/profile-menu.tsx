@@ -10,16 +10,14 @@ export const ProfileMenuUI: FC<ProfileMenuUIProps> = ({ pathname, handleLogout }
             className={({ isActive }) =>
                 `text text_type_main-medium text_color_inactive pt-4 pb-4 ${styles.link} ${isActive ? styles.link_active : ""}`
             }
-            end
-        >
+            end>
             Профиль
         </NavLink>
         <NavLink
             to={"/profile/orders"}
             className={({ isActive }) =>
                 `text text_type_main-medium text_color_inactive pt-4 pb-4 ${styles.link} ${isActive ? styles.link_active : ""}`
-            }
-        >
+            }>
             История заказов
         </NavLink>
         <button className={`text text_type_main-medium text_color_inactive pt-4 pb-4 ${styles.button}`} onClick={handleLogout}>

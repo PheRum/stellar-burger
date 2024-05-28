@@ -116,8 +116,7 @@ const App = () => {
                                 title={"Описание ингредиента"}
                                 onClose={() => {
                                     dispatch(closeModal());
-                                }}
-                            >
+                                }}>
                                 <IngredientDetails />
                             </Modal>
                         }
@@ -130,8 +129,7 @@ const App = () => {
                                     title={"Заказ"}
                                     onClose={() => {
                                         dispatch(closeModal());
-                                    }}
-                                >
+                                    }}>
                                     <OrderInfo />
                                 </Modal>
                             </ProtectedRoute>
@@ -144,8 +142,7 @@ const App = () => {
                                 title={"Заказ"}
                                 onClose={() => {
                                     dispatch(closeModal());
-                                }}
-                            >
+                                }}>
                                 <OrderInfo />
                             </Modal>
                         }
