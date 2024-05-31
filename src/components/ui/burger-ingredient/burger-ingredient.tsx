@@ -8,7 +8,7 @@ import { TBurgerIngredientUIProps } from "./type";
 import { openModal } from "../../../slices/contructorSlice";
 import { useDispatch } from "../../../services/store";
 
-export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(({ ingredient, count, handleAdd, locationState }) => {
+export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(({ ingredient, count, handleAdd, locationState, index }) => {
     const { image, price, name, _id } = ingredient;
     const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(({ ingredie
     };
 
     return (
-        <li className={styles.container}>
+        <li className={styles.container} data-cy={ingredient.type === "bun" ? `bun_${index}` : `ingredient_${index}`}>
             <Link className={styles.article} to={`/ingredients/${_id}`} state={locationState} onClick={openModalHandler}>
                 {count && <Counter count={count} />}
                 <img className={styles.img} src={image} alt="картинка ингредиента." />

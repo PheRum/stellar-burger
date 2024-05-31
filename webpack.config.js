@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const { DefinePlugin } = require("webpack");
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
     entry: path.resolve(__dirname, "./src/index.tsx"),
     module: {
@@ -57,7 +59,7 @@ module.exports = {
         }),
         new Dotenv(),
         new DefinePlugin({
-            "process.env.BURGER_API_URL": JSON.stringify(process.env.BURGER_API_URL ?? ""),
+            //"process.env.BURGER_API_URL": JSON.stringify(process.env.BURGER_API_URL ?? ""),
         }),
     ],
     resolve: {
@@ -76,6 +78,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "bundle.js?[contenthash]",
+        publicPath: isProd ? "/stellar-burger/" : "",
     },
     devServer: {
         static: path.join(__dirname, "./dist"),

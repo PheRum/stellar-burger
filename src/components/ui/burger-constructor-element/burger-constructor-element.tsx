@@ -6,7 +6,7 @@ import { MoveButton } from "@zlden/react-developer-burger-ui-components";
 
 export const BurgerConstructorElementUI: FC<BurgerConstructorElementUIProps> = memo(
     ({ ingredient, index, totalItems, handleMoveUp, handleMoveDown, handleClose }) => (
-        <li className={`${styles.element} mb-4 mr-2`}>
+        <li className={`${styles.element} mb-4 mr-2`} data-cy={"ingredient_element"}>
             <MoveButton
                 handleMoveDown={handleMoveDown}
                 handleMoveUp={handleMoveUp}

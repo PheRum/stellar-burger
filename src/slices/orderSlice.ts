@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getOrdersApi } from "@api";
+// noinspection ES6PreferShortImport
+import { getOrdersApi } from "../utils/burger-api";
 import { TOrder } from "@utils-types";
 
 type TInitialState = {
@@ -8,7 +9,7 @@ type TInitialState = {
     orders: TOrder[] | null;
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     loading: false,
     errorText: "",
     orders: null,

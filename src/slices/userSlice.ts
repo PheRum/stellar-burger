@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TUser } from "@utils-types";
-import { getUserApi, loginUserApi, logoutApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "@api";
-import { deleteCookie, setCookie } from "../utils/cookie";
+// noinspection ES6PreferShortImport
+import { getUserApi, loginUserApi, logoutApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "../utils/burger-api";
 
 type TInitialState = {
     isAuthenticated: boolean;
@@ -11,7 +11,7 @@ type TInitialState = {
     errorText: string;
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     isAuthenticated: false,
     isInit: false,
     loading: false,
@@ -54,8 +54,6 @@ const userSlice = createSlice({
             })
             .addCase(fetchLoginUser.fulfilled, (state, action) => {
                 state.loading = false;
-                setCookie("accessToken", action.payload.accessToken);
-                localStorage.setItem("refreshToken", action.payload.refreshToken);
                 state.isAuthenticated = true;
             })
             .addCase(fetchRegisterUser.pending, (state) => {
@@ -67,8 +65,6 @@ const userSlice = createSlice({
             })
             .addCase(fetchRegisterUser.fulfilled, (state, action) => {
                 state.loading = false;
-                localStorage.setItem("refreshToken", action.payload.refreshToken);
-                setCookie("accessToken", action.payload.accessToken);
                 state.isAuthenticated = true;
             })
             .addCase(getUserThunk.pending, (state) => {
@@ -78,8 +74,6 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.isAuthenticated = false;
                 state.user = { name: "", email: "" };
-                deleteCookie("accessToken");
-                localStorage.removeItem("refreshToken");
             })
             .addCase(getUserThunk.fulfilled, (state, action) => {
                 state.loading = false;
@@ -96,8 +90,6 @@ const userSlice = createSlice({
             .addCase(fetchLogout.fulfilled, (state, action) => {
                 state.loading = false;
                 if (action.payload.success) {
-                    localStorage.removeItem("refreshToken");
-                    deleteCookie("accessToken");
                     state.user = { name: "", email: "" };
                     state.isAuthenticated = false;
                 }
