@@ -1,4 +1,5 @@
-import { getIngredientsApi, orderBurgerApi } from "@api";
+// noinspection ES6PreferShortImport
+import { getIngredientsApi, orderBurgerApi } from "../utils/burger-api";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TConstructorItems, TIngredient, TIngredientUnique, TOrder } from "@utils-types";
 import { v4 as uuidv4 } from "uuid";
@@ -13,7 +14,7 @@ type TInitialState = {
     errorText: string;
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     ingredients: [],
     loading: false,
     orderModalData: null,

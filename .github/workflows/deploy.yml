@@ -5,6 +5,7 @@ on:
       branches:
          - master
          - review
+         - tests
 
 env:
    BURGER_API_URL: "https://norma.nomoreparties.space/api"
@@ -20,6 +21,7 @@ jobs:
             with:
                node-version: '20.x'
          -  run: yarn install
+         -  run: yarn test
          -  run: yarn build
    deploy:
       needs: build

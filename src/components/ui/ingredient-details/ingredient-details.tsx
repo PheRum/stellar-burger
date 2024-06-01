@@ -6,7 +6,7 @@ export const IngredientDetailsUI: FC<IngredientDetailsUIProps> = memo(({ ingredi
     const { name, image_large, calories, proteins, fat, carbohydrates } = ingredientData;
 
     return (
-        <div className={styles.content}>
+        <div className={styles.content} data-cy={"ingredient_modal"}>
             <img className={styles.img} alt="изображение ингредиента." src={image_large} />
             <h3 className="text text_type_main-medium mt-2 mb-4">{name}</h3>
             <ul className={`${styles.nutritional_values} text_type_main-default`}>

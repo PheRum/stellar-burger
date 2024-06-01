@@ -5,6 +5,7 @@ import { fetchRegisterUser, getUserThunk, removeErrorText, selectLoading, select
 import { useDispatch, useSelector } from "../../services/store";
 import { useForm } from "../../hooks/useForm";
 import { TRegisterData } from "@api";
+import { setCookie } from "../../utils/cookie";
 
 export const Register: FC = () => {
     const { values, handleChange } = useForm<TRegisterData>({
@@ -22,7 +23,13 @@ export const Register: FC = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch(fetchRegisterUser(values)).then(() => dispatch(getUserThunk()));
+        dispatch(fetchRegisterUser(values))
+            .unwrap()
+            .then((payload) => {
+                localStorage.setItem("refreshToken", payload.refreshToken);
+                setCookie("accessToken", payload.accessToken);
+                dispatch(getUserThunk());
+            });
     };
 
     if (isLoading) {

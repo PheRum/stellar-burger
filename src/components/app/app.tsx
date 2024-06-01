@@ -8,7 +8,7 @@ import { ConstructorPage, Feed, ForgotPassword, Login, NotFound404, Profile, Pro
 import { ProtectedRoute } from "../protected-route";
 import { closeModal, fetchIngredients, selectIngredients, selectIsModalOpened } from "../../slices/contructorSlice";
 import { useDispatch, useSelector } from "../../services/store";
-import { getCookie } from "../../utils/cookie";
+import { deleteCookie, getCookie } from "../../utils/cookie";
 import { getUserThunk, init, selectIsAuthenticated } from "../../slices/userSlice";
 import { fetchFeed, selectOrders } from "../../slices/feedSlice";
 
@@ -25,7 +25,15 @@ const App = () => {
 
     useEffect(() => {
         if (!isAuthenticated && token) {
-            dispatch(getUserThunk()).then(() => dispatch(init()));
+            dispatch(getUserThunk())
+                .unwrap()
+                .then(() => {
+                    dispatch(init());
+                })
+                .catch(() => {
+                    deleteCookie("accessToken");
+                    localStorage.removeItem("refreshToken");
+                });
         } else {
             dispatch(init());
         }

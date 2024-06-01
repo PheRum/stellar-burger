@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { fetchLoginUser, removeErrorText, selectErrorText, selectLoading } from "../../slices/userSlice";
 import { Preloader } from "@ui";
 import { useForm } from "../../hooks/useForm";
+import { setCookie } from "../../utils/cookie";
 
 export const Login: FC = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,12 @@ export const Login: FC = () => {
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         dispatch(removeErrorText());
-        dispatch(fetchLoginUser(values));
+        dispatch(fetchLoginUser(values))
+            .unwrap()
+            .then((payload) => {
+                setCookie("accessToken", payload.accessToken);
+                localStorage.setItem("refreshToken", payload.refreshToken);
+            });
     };
 
     if (isLoading) {
